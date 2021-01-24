@@ -44,3 +44,23 @@ test('input with prevented mouseDown event', () => {
 
   expect(handleChange).toHaveBeenCalledTimes(sample.length)
 })
+
+test('input with prevented mouseDown event', () => {
+  const state = { value: '' }
+  const handleChange = jest.fn(e => (state.value = e.target.value))
+  const { getByRole } = render(
+    <div onMouseDown={(e) => void e.preventDefault()}>
+      <input
+        type="text"
+        value={state.value}
+        onChange={handleChange}
+      />
+    </div>
+  )
+  const $input = getByRole('textbox')
+  
+  const sample = 'hello world'
+  userEvent.type($input, sample)
+
+  expect(handleChange).toHaveBeenCalledTimes(sample.length)
+})
