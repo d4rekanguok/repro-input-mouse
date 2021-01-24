@@ -45,7 +45,7 @@ test('input with prevented mouseDown event', () => {
   expect(handleChange).toHaveBeenCalledTimes(sample.length)
 })
 
-test('input with prevented mouseDown event', () => {
+test('input with container with prevented mouseDown event', () => {
   const state = { value: '' }
   const handleChange = jest.fn(e => (state.value = e.target.value))
   const { getByRole } = render(
